@@ -1,0 +1,127 @@
+ body {
+                   
+                    margin: 0;
+                    
+            }
+            h1 {
+                        text-align:center;
+                    }
+            ul {
+                text-align: left;
+                display: inline;
+                margin:0;
+                padding: 0;
+                list-style: none;
+            }
+            .navbar {
+                width: 100%;
+                background: #1E1E1E;
+                font-size: 18px;
+                color: white;
+            }
+            ul li{
+                font: bold 12px/18px sans-serif;
+                display:inline-block;
+                position: relative;
+                padding:25px 20px;
+                
+                color: white;
+                
+                
+            } 
+            ul li a{
+                text-decoration: none;
+                padding:25px 20px;
+                color:white;
+                font-size: 18px;
+            }
+            ul li:hover {
+                background: #1E1E1E;
+                /* color:rgb(165, 243, 19); */
+            }
+            ul li a:hover {
+                
+                color:rgb(165, 243, 19);
+            }
+          ul div{
+              float: right;
+          }
+
+         
+           
+            ul li:hover ul{
+                display:block;
+                opacity:1;
+                visibility: visible;
+            }
+           
+           #orderHistory {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 80%;
+                margin-left:10%;
+                margin-right:10%;
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            #orderHistory td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #orderHistory tr:nth-child(even){background-color: #f2f2f2;}
+
+            #orderHistory tr:hover {background-color: #ddd;}
+
+            #orderHistory th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: center;
+                background-color: #024457;
+                color: white;
+            }
+            #myCart{
+                border:none !important;
+                background:red !important;
+                color: white;
+                border-radius:40px;
+            }
+            #cart{
+                color:springgreen;
+            }
+            #grandTotal{
+                background-color: #dff0d8;
+            }
+            #cancelOrder{
+                border-color: #FF4A55;
+                color: #FF4A55;
+                background:white;
+                float: right;
+                border-width: 2px;
+                padding: 8px 16px;
+                cursor: pointer;
+            }
+            #checkOut{
+                border-color: #3472F7;
+                color: #3472F7;
+                background:white;
+                float:right;
+                border-width: 2px;
+                padding: 8px 16px;
+                cursor: pointer;
+                border-radius: 4px;
+                
+            }
+            #footer, #totals{
+                width:80%;
+                margin-left:10%;
+                margin-right:10%;
+                margin-top: 20px;
+                
+            }
+            #footer #cancelOrder{
+               float: left;
+            }
+             
+             

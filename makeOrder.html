@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Burgers</title>
+       <link rel="stylesheet" href="css/makeOrder.css">
+        
+    </head>
+    <body>
+        
+        <div class= "navbar">
+            <ul>
+                <li><a href="#">APL Fast Food Dealers</a></li>
+                <div id="items-right">
+                    <li><a href="menu.html">Make Order</a></li>
+                     <li><a href="myCart.html"><button id="myCart">2</button>My cart</a></li>
+                    <li><a href="orderHistory.html">Order History</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="index.html">logout</a></li>
+                </div>
+            </ul>
+        </div>
+        <div id="main">
+            <h1>Burgers</h1>
+            <hr>
+            <div id="items-list">
+                <div id="item">
+                        <img src="images/bacon.jpg">
+                        <h3>Bacon Burgers</h3>
+                        <p>Our price: $10</p>
+                        <button type="button" id="modalBtn1" onclick="order1()">Order Now</button>
+                        
+                </div>
+                <div id="item">
+                        <img src="images/bacon.jpg">
+                        <h3>Bacon Burgers</h3>
+                        <p>Our price: $10</p>
+                        <button type="button" id="modalBtn2" onclick="order2()">Order Now</button>
+                        
+                </div>
+                <div id="item">
+                        <img src="images/umami.jpg">
+                        <h3>Umami Burgers</h3>
+                        <p>Our price: $10</p>
+                        <button type="button" id="modalBtn3" onclick="order3()">Order Now</button>
+                </div>
+               
+                <div id="item">
+                        <img src="images/pug.jpg">
+                        <h3>Pug Burger</h3>
+                        <p>Our price: $10</p>
+                        <button type="button" id="modalBtn4" onclick="order4()">Order Now</button>
+                </div>
+                <div id="item">
+                        <img src="images/minetta.jpg">
+                        <h3>Minetta Burger</h3>
+                        <p>Our price: $10</p>
+                        <button type="button" id="modalBtn5" onclick="order5()">Order Now</button>
+                </div>
+                <div id="item">
+                        <img src="images/greenchill.jpg">
+                        <h3>Green-Chile Burgers</h3>
+                        <p>Our price: $10</p>
+                        <button type="button" id="modalBtn6" onclick="order6()">Order Now</button>
+                </div>
+                    
+            </div>
+            
+        </div>
+
+
+        <div id="simpleModal" class="modal">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <span class="closeBtn">&times;</span>
+                    <h2>Chicken Burger</h2>
+                </div>
+                <div class="modal-body">
+                  
+                        <div id="detailsModal">
+                                <div id="part1">
+                                        <img src="images/hotdog.jpg" width="350px" height="300px"alt="FastFood"/>
+                                </div>
+                                
+                                <div id="part2">
+                                    <h3>Details</h3>
+                                    <p>Nice fast </p>
+                                    <hr>
+                                    <p>Price:$30</p>
+                                    <p>Brand:Burger</p>
+                                    <form action="" method="post">
+                                        <div class="form-group">
+                                            <div class="col-xs-3">
+                                                <label for="quantity">Quantity:</label>
+                                                <input type="number" class="form-control" id="quantity" name="quantity" min="0">
+                                                <br><div class="col-xs-9">&nbsp;</div>
+                                                </div>
+                                            
+                                            </div>
+                                        
+                                    </form>
+                                </div>
+                                
+                
+                                
+                            </div>
+                    
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                        
+                        <button>Add to my cart</button>
+                                 
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+        <script src="js/makeOrderModal.js"></script>
+              
+            
+
+
+
+    </body>
+</html>
