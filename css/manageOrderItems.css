@@ -1,0 +1,187 @@
+ body {
+                   
+                    margin: 0;
+            }
+            h1 {
+                        text-align:center;
+                    }
+            ul {
+                text-align: left;
+                display: inline;
+                margin:0;
+                padding: 0;
+                list-style: none;
+            }
+            .navbar {
+                width: 100%;
+                background: #1E1E1E;
+                font-size: 18px;
+                color: white;
+            }
+            ul li{
+                font: bold 12px/18px sans-serif;
+                display:inline-block;
+                position: relative;
+                padding:25px 20px;
+                
+                color: white;
+                
+                
+            } 
+            ul li a{
+                text-decoration: none;
+                padding:25px 20px;
+                color:white;
+                font-size: 18px;
+            }
+            ul li:hover {
+                background: #1E1E1E;
+                /* color:rgb(165, 243, 19); */
+            }
+            ul li a:hover {
+                
+                color:rgb(165, 243, 19);
+            }
+          ul div{
+              float: right;
+          }
+
+         
+           
+            ul li:hover ul{
+                display:block;
+                opacity:1;
+                visibility: visible;
+            }
+           
+           #orderHistory {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 80%;
+                margin-left:10%;
+                margin-right:10%;
+                margin-top: 20px;
+            }
+
+            #orderHistory td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #orderHistory tr:nth-child(even){background-color: #f2f2f2;}
+
+            #orderHistory tr:hover {background-color: #ddd;}
+
+            #orderHistory th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #024457;
+                color: white;
+            }
+             
+            button {
+                border:none;
+                color:white;
+                border-radius:5px;
+            }
+            #addFood{
+                float: right;
+                background:seagreen;
+                font-size:20px;
+                margin-right: -135px;
+                height:45px;
+                
+            }
+            #edit{
+                background:#024457;
+            }
+            #delete{
+                background:#8B0000;
+            }
+            #addButton{
+                width:80%;
+                
+            }
+
+            /****************************css for the modal***********************************************/
+            .modal{
+            display:none;
+            position: fixed;
+            z-index:1;
+            left: 0;
+            top:0;
+            height: 100%;
+            width:100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            }
+
+            .modal-content{
+            background-color:#f4f4f4;
+            margin: 20% auto;
+            width:70%;
+            box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+            animation-name:modalopen;
+            animation-duration:1s;
+            }
+
+            .modal-header h2, .modal-footer h3{
+            margin:0;
+            }
+
+            .modal-header{
+            background:#024457;
+            padding:15px;
+            color:#fff;
+            }
+
+            .modal-body{
+            padding:10px 20px;
+            }
+
+            .modal-footer{
+            background:#024457;
+            padding:10px;
+            color:#fff;
+            text-align: right;
+            }
+            .modal-footer button{
+                border:none;
+                color:white;
+                border-radius: 5px;
+                font-size: 20px;
+                
+            }
+            .modal-footer #declineBtn{
+                background: #8B0000;
+                
+                
+            }
+             .modal-footer #acceptBtn{
+                background: green;
+                
+                
+            }
+            .closeBtn{
+            color:#ccc;
+            float: right;
+            font-size:30px;
+            color:#fff;
+            }
+
+            .closeBtn:hover,.closeBtn:focus{
+            color:springgreen;
+            text-decoration: none;
+            cursor:pointer;
+            }
+
+            @keyframes modalopen{
+            from{ opacity: 0}
+            to {opacity: 1}
+            }
+            /******************************************* end css for the modal **************************************/
+
+           
+            
+           

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add food item</title>
+        <link rel="stylesheet" href="css/manageOrderItems.css">
+    </head>
+    <body>
+        
+        <div class= "navbar">
+            <ul>
+                <li><a href="#">APL Fast Food Dealers</a></li>
+                <div id="items-right">
+                    <li><a href="#">Fast foods</a></li>
+                    <li><a href="#">View orders</a></li>
+                    <li><a href="#">Change credentials</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">logout</a></li>
+                </div>
+               
+            </ul>
+        </div>
+        <div id="main">
+            <h1>Fast Foods</h1>
+            <hr>
+            <div id="addButton">
+                    <button id="addFood"> + Add fast food</button><br><br/>
+            </div>
+            
+            <table border="1" id="orderHistory">
+                    
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Options</th>
+                        
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Burger</td>
+                        <td>Chicken burger</td>
+                        <td>35000</td>
+                        <td><button id="edit">Edit</button>/<button id="delete" onclick="alert('Are you sure you want to delete this food item?')">Delete</button></td>
+                    </tr>
+                     <tr>
+                        <td>2</td>
+                        <td>Burger</td>
+                        <td>Beef burger</td>
+                        <td>35000</td>
+                        <td><button id="edit">Edit</button>/<button id="delete" onclick="alert('Are you sure you want to delete this food item?')">Delete</button></td>
+                    </tr>
+                </table>
+            
+        </div>
+
+
+    <div id="addFoodModal" class="modal">
+                <div class="modal-content">
+                  <div class="modal-header">
+                      <span class="closeBtn">&times;</span>
+                      <h2>Add fast food item</h2>
+                  </div>
+                  <div class="modal-body">
+                        <table border="1" id="orderHistory">
+                                <form>
+                                    <tr><td>Name:</td><td><input type="text"></td></tr>
+                                    <tr><td>Category:</td><td><input type="text"></td></tr>
+                                    <tr><td>Price:</td><td><input type="text"></td></tr>
+                                </form>
+                        </table>
+  
+                  </div>
+                  <div class="modal-footer">
+                        
+                          <button id="acceptBtn">Add</button>
+                  </div>
+                </div>
+    </div>
+   <script src="js/addFoodItemModal.js"></script>
+        
+
+
+
+    </body>
+</html>
