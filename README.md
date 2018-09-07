@@ -37,4 +37,4 @@ Email: ayesigalindsey@gmail.com
 
 Credits and acknowledgement:
 I would like extend my sincere gratitude to the Andela team that has given me this opportunity to 
-develop my abilities and my collegues for the support rendered.
+develop my abilities and skills and my collegues for the support rendered.
