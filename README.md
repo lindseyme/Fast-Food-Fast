@@ -14,7 +14,6 @@ PivotalTracker link: https://www.pivotaltracker.com/n/projects/2195806
 
 
 
-
 Project usage:
 The project has an admin and users.
 The admin is able to log into the system and add food items, edit or delete the exist food item.
