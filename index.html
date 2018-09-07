@@ -35,9 +35,11 @@
                             <div class="body" id="form-body">
                                 <div class="login">
                                     <div class="form-row">
-                                        <input type="email" placeholder="Email">
-                                        <input type="password" placeholder="Password">
-                                        <button>LOGIN</button>
+                                        <form onSubmit="return getCredentials();">
+                                        <input type="email" id="email" placeholder="Email" required>
+                                        <input type="password" id="password" placeholder="Password" required>
+                                        <button type="submit">LOGIN</button>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="signup">

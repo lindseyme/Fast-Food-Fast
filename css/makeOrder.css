@@ -34,6 +34,9 @@
                 color:white;
                 font-size: 18px;
             }
+            #makeOrder{
+                color: springgreen;
+            }
             ul li:hover {
                 background: #1E1E1E;
                 /* color:rgb(165, 243, 19); */
