@@ -1,5 +1,5 @@
-from place_a_new_order_for_food_api import APP
-from place_a_new_order_for_food_api.urls import Urls
+from update_the_order_status_api import APP
+from update_the_order_status_api.urls import Urls
 
 Urls.fetch_urls(APP)
 

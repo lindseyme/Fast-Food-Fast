@@ -1,7 +1,7 @@
 """
 This script contains the different urls.
 """
-from place_a_new_order_for_food_api.views import Order
+from update_the_order_status_api.views import Order
 
 class Urls():
     """
@@ -13,4 +13,6 @@ class Urls():
          Method that fetches
         """
         order_view = Order.as_view('order_api')
-        app.add_url_rule('/api/v1/orders', view_func=order_view, methods=['POST',])
+        app.add_url_rule('/api/v1/orders/<int:order_id>', view_func=order_view,
+                         methods=['PUT',])
+

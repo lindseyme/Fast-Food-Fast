@@ -3,7 +3,7 @@ In this script, we implement three restApi methods which are: GET,POST and PULL
 """
 from flask import jsonify, request
 from flask.views import MethodView
-from place_a_new_order_for_food_api.order_class import MakeOrder
+from update_the_order_status_api.order_class import MakeOrder
 
 
 class Order(MethodView):
@@ -21,15 +21,21 @@ class Order(MethodView):
 
     orders = [order_1, order_2, order_3]
 
-    def post(self):
+    def put(self, order_id):
         """
-        Method for creating the new order
+        Method for updating the data structure
         """
-        if 'order_list' in request.json and 'username' in request.json:
-            if isinstance(request.json['username'], str):
-                new_order = MakeOrder(len(self.orders) + 1,
-                                      request.json['username'], request.json['order_list'], None)
-                self.orders.append(new_order)
-                return jsonify({'new_order': new_order.__dict__}), 200
-            raise ValueError("order_list should be a str")
-        raise ValueError("order_list and username keys should be defined in json structure")
+        if isinstance(order_id, int):
+            if order_id > 0:
+                # return 200
+                if 'order_status' in request.json and isinstance(request.json['order_status'], str):
+                    for order in self.orders:
+                        if order.__dict__['order_id'] == order_id:
+                            order_json = request.get_json()
+                            order.__dict__['order_status'] = order_json['order_status']
+                            return jsonify({'updated order':
+                                            [order.__dict__ for order in self.orders]})
+                return "A string order_status should be defined"
+            raise ValueError("order_id should be greater than 0")
+        raise TypeError("Please provide a non negative integer argument")
+        
