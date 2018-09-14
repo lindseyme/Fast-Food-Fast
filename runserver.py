@@ -1,5 +1,5 @@
-from update_the_order_status_api import APP
-from update_the_order_status_api.urls import Urls
+from api import APP
+from api.urls import Urls
 
 Urls.fetch_urls(APP)
 
