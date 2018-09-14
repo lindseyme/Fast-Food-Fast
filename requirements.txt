@@ -60,8 +60,6 @@ statsmodels==0.9.0
 tinydb==3.9.0.post1
 traitlets==4.3.2
 tuspy==0.2.1
-tweepy==3.6.0
-twitter==1.18.0
 typed-ast==1.1.0
 typing==3.6.4
 urllib3==1.23
@@ -71,6 +69,6 @@ Werkzeug==0.14.1
 wget==3.2
 win-unicode-console==0.5
 wrapt==1.10.11
-WTForms==2.1
 coverage==4.5.1
 coveralls==1.5.0
+pytest-cov==2.6.0
