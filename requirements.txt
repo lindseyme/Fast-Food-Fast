@@ -72,3 +72,5 @@ wget==3.2
 win-unicode-console==0.5
 wrapt==1.10.11
 WTForms==2.1
+coverage==4.5.1
+coveralls==1.5.0
