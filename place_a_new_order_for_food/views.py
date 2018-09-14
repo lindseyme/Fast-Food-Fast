@@ -1,9 +1,9 @@
 """
 In this script, we implement three restApi methods which are: GET,POST and PULL
 """
-from flask import jsonify
+from flask import jsonify, request
 from flask.views import MethodView
-from fetch_a_specific_order_api.order_class import MakeOrder
+from place_a_new_order_for_food_api.order_class import MakeOrder
 
 
 class Order(MethodView):
@@ -21,20 +21,15 @@ class Order(MethodView):
 
     orders = [order_1, order_2, order_3]
 
-    def get(self, order_id):
+    def post(self):
         """
-         Method that retrieves a specific order.
+        Method for creating the new order
         """
-        if isinstance(order_id, int):
-            if not isinstance(order_id, bool):
-                if order_id > 0:
-                #expose a single order
-                    single_order = [order.__dict__ for order in self.orders
-                                    if order.__dict__['order_id'] == order_id]
-                    if single_order:
-                        return jsonify({'Specific order': single_order[0]})
-                    raise ValueError("The order with that id doesn't exist.")
-                raise ValueError('Please provide a non negative integer argument')
-            raise TypeError('Please provide a non negative integer argument')
-        raise TypeError('Please provide a non negative integer argument')
-    
+        if 'order_list' in request.json and 'username' in request.json:
+            if isinstance(request.json['username'], str):
+                new_order = MakeOrder(len(self.orders) + 1,
+                                      request.json['username'], request.json['order_list'], None)
+                self.orders.append(new_order)
+                return jsonify({'new_order': new_order.__dict__}), 200
+            raise ValueError("order_list should be a str")
+        raise ValueError("order_list and username keys should be defined in json structure")
