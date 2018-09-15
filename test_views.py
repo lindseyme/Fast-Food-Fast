@@ -44,7 +44,7 @@ def test_update_specific_order():
     """
     Method to update an order.
     """
-    result = CLIENT().put('/api/v1/orders/2', content_type='application/json',
+    result = CLIENT().put('/api/v1/orders/1', content_type='application/json',
                           data=json.dumps({"order_status":"Accepted"}))
     assert result.status_code == 200
 
