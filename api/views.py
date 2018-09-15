@@ -55,7 +55,7 @@ class Order(MethodView):
             if not isinstance(order_id, bool):
                 if order_id > 0:
                    # return 200
-                    fetch_order = [order.__dict__ for order in self.orders
+                    fetch_order = [order for order in self.orders
                                    if order.__dict__['order_id'] == order_id]
                     if fetch_order:
                         if 'order_status' in request.json and isinstance(request.json
