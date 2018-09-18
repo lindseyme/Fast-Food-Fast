@@ -29,7 +29,7 @@ class Order(MethodView):
                                     if order.__dict__['order_id'] == order_id]
                     if single_order:
                         return jsonify({'Specific order': single_order[0]})
-                    raise ValueError("The order with that id doesn't exist.")
+                    return jsonify({"Error Message":"The order with that id doesn't exist."})
                 raise ValueError('Please provide a non negative integer argument')
             raise TypeError('Please provide a non negative integer argument')
         raise TypeError('Please provide a non negative integer argument')
@@ -67,7 +67,7 @@ class Order(MethodView):
                                     return jsonify({'updated order':
                                                     [order.__dict__ for order in self.orders]})
                         return "A string order_status should be defined"
-                    raise ValueError("The order with that id doesn't exist.")
+                    return jsonify({"Error Message":"The order with that id doesn't exist."})
                 raise ValueError("order_id should be greater than 0")
             raise TypeError("Please provide a non negative integer argument")
         raise TypeError("Please provide a non negative integer argument")
