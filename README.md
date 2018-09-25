@@ -1,17 +1,18 @@
-#Fast Food Fast
+# Fast Food Fast
+
 Fast Food Fast is a food delivery service app for a restaurant.
 
-#BADGES
-#TRAVIS BADGE
+## Badges
+Travis Badge
 [![Build Status](https://travis-ci.org/lindseyme/Fast-Food-Fast.svg?branch=api_ci)](https://travis-ci.org/lindseyme/Fast-Food-Fast)
 
-#COVERALLS
+Coveralls
 [![Coverage Status](https://coveralls.io/repos/github/lindseyme/Fast-Food-Fast/badge.svg?branch=api_ci)](https://coveralls.io/github/lindseyme/Fast-Food-Fast?branch=api_ci)
 
-#CODE CLIMATE
+Code Climate
 [![Maintainability](https://api.codeclimate.com/v1/badges/d394577ec343cf74808c/maintainability)](https://codeclimate.com/github/lindseyme/Fast-Food-Fast/maintainability)
 
-# APIs for Fast Food Fast
+## APIs for Fast Food Fast
 These are APIs to be used to interface the fuctionality of the Fast Food Fast application
 
 ## Functionality
@@ -20,11 +21,9 @@ These are APIs to be used to interface the fuctionality of the Fast Food Fast ap
 - Getting a specific order.
 - Updating the order status.
  
-These are the endpoints
-These are the endpoints
-
+These are the endpoints:
 | Method  | Endpoint          | Description                      | Body                  |
-| --------|:-------------:    | --------------------:            |---------------:       |
+| --------|:-----------------:| -------------------------------: |----------------------:|
 | GET     | /api/v1/orders/   | Get all orders|                  |                       |
 | GET     | /api/v1/orders/id | Get specific orders using an id  |                       |   
 |POST     | /api/v1/orders    | Place a new orders               |order_list[], username |
