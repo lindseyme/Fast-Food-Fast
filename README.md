@@ -22,6 +22,7 @@ These are APIs to be used to interface the fuctionality of the Fast Food Fast ap
 - Updating the order status.
  
 These are the endpoints:
+
 | Method  | Endpoint          | Description                      | Body                  |
 | --------|:-----------------:| -------------------------------: |----------------------:|
 | GET     | /api/v1/orders/   | Get all orders|                  |                       |
