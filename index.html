@@ -1,65 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>APL fast food</title>
-        <link rel="stylesheet" type="text/css" href="css/login.css">
-    </head>
-    <body>
-        
-        <div class= "navbar">
-            <ul>
-                <li><a href="#">APL Fast Food Dealers</a></li>
-                <div id="items-right">
-                    <li><a href="#">Help</a></li>
-                </div>
-               
-            </ul>
-        </div>
-        <div id="main">
-            <div id="welcome">
-                <img src="images/sandwich.jpg" width="500px;">
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login/Signup Form</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class= "navbar">
+        <ul>
+            <li><a href="#">APL Fast Food Dealers</a></li>
+            <div id="items-right">
+                <li><a href="#">Help</a></li>
             </div>
-            <div id="useraccount">
-                <h1><i>Welcome to our website. please login/signup for free to be able to order for all the delicacies you want.</i></h1><hr>
-                    <div class="form">
-                            <div class="head" class="signup">
-                                <div onclick="swap(this);" data-tab = "login" class="login-tab">
-                    
-                                    LOGIN
-                                </div>
-                                <div onclick="swap(this);" data-tab = "signup" class="signup-tab">
-                    
-                                        SIGNUP
-                                    </div>
-                            </div>
-                            <div class="body" id="form-body">
-                                <div class="login">
-                                    <div class="form-row">
-                                        <input type="email" id="email" placeholder="Email" required>
-                                        <input type="password" id="password" placeholder="Password" required>
-                                        <button onclick="getCredentials()">LOGIN</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="signup">
-                                        <div class="form-row">
-                                            <input type="text" placeholder="First Name" required autocomplete="off" />
-                                            <input type="text" placeholder="Last Name" required autocomplete="off" />
-                                            <input type="email" placeholder="Email">
-                                            <input type="number" placeholder="Phone number" name="pnumber">
-                                            <input type="text" placeholder="Username" name="uname">
-                                            <input type="password" placeholder="Password" name="pass">
-                                            <input type="password" placeholder="confirm password" name="cpass">
-                                            <button>SIGNUP</button>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-            </div>
-            
+           
+        </ul>
+    </div>
+  <div class="form">
+    <div class="head" class="signup">
+      <div onclick="swap(this);" data-tab="login" class="login-tab" >
+        LOGIN
+      </div>
+      <div onclick="swap(this);" data-tab="signup" class="signup-tab">
+        SIGNUP
+      </div>
+    </div>
+    <div class="body" id="form-body">
+        <div class="login">
+          <div class="form-row">
+           
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button onclick="getCredentials()">LOGIN</button>
+          </div>
         </div>
-        <script src="js/login.js"></script>
-                
-            
-    </body>
+        <div class="signup">
+          <div class="form-row">
+
+                  <input type="text" placeholder="First Name" required autocomplete="off" />
+                  <input type="text" placeholder="Last Name" required autocomplete="off" />
+                  <input type="email" placeholder="Email">
+                  <input type="number" placeholder="Phone number" name="pnumber">
+                  <input type="text" placeholder="Username" name="uname">
+                  <input type="password" placeholder="Password" name="pass">
+                  <input type="password" placeholder="confirm password" name="cpass">
+                  <button>SIGNUP</button>
+          </div>
+        </div>
+    </div>
+  </div>
+ <script src="js/login.js"></script>
+</body>
 </html>
