@@ -1,9 +1,9 @@
 [
   "test_views.py::test_get_all_orders_OR_specific_order[/api/v1/orders/-200]",
   "test_views.py::test_get_all_orders_OR_specific_order[/api/v1/orders/1-200]",
-  "test_views.py::test_if_parameter__is_a_string[five-Please provide a non negative integer argument]",
-  "test_views.py::test_if_parameter__is_a_string[True-Please provide a non negative integer argument]",
-  "test_views.py::test_if_parameter__is_a_string[test_input2-Please provide a non negative integer argument]",
+  "test_views.py::test_if_parameter__is_of_wrong_type[five-Please provide a non negative integer argument]",
+  "test_views.py::test_if_parameter__is_of_wrong_type[True-Please provide a non negative integer argument]",
+  "test_views.py::test_if_parameter__is_of_wrong_type[test_input2-Please provide a non negative integer argument]",
   "test_views.py::test_update_specific_order",
   "test_views.py::test_if_data_posted_is_in_form_of_json"
 ]

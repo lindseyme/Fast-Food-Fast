@@ -22,13 +22,17 @@ def test_get_all_orders_OR_specific_order(test_input, expected_output):
     """
     result = CLIENT().get(test_input)
     assert result.status_code == expected_output
+    if test_input == '/api/v1/orders/':
+        assert b"List of all orders" in result.data
+    else:
+        assert b"Specific order" in result.data
+    
 
 @pytest.mark.parametrize("test_input, expected_output",
                         [
                             ('five','Please provide a non negative integer argument'),
                             (True,'Please provide a non negative integer argument'),
                             (2+3j,'Please provide a non negative integer argument')
-
                         ]
                         )
 def test_if_parameter__is_of_wrong_type(test_input,expected_output):
