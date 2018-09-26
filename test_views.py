@@ -9,35 +9,35 @@ MYAPP = APP
 CLIENT = MYAPP.test_client
 NEWORDER = Order()
 
-########################## Tests for fetching all orders ###################################
-def test_get_all_orders():
+########################## Tests for fetching all orders and a specific order###################################
+@pytest.mark.parametrize("test_input, expected_output",
+                        [
+                            ('/api/v1/orders/',200),
+                            ('/api/v1/orders/1',200),
+                        ]
+                        )
+def test_get_all_orders_OR_specific_order(test_input, expected_output):
     """
     Method for fetching all the orders.
     """
-    result = CLIENT().get('/api/v1/orders/')
-    assert result.status_code == 200
+    result = CLIENT().get(test_input)
+    assert result.status_code == expected_output
 
-######################### Tests for fetching a single order  ###############################
-def test_get_one_order():
-    """
-    Method that fetches a single order.
-    """
-    result = CLIENT().get('/api/v1/orders/1')
-    assert result.status_code == 200
+@pytest.mark.parametrize("test_input, expected_output",
+                        [
+                            ('five','Please provide a non negative integer argument'),
+                            (True,'Please provide a non negative integer argument'),
+                            (2+3j,'Please provide a non negative integer argument')
 
-def test_if_parameter_passed_to_function_is_a_string():
+                        ]
+                        )
+def test_if_parameter__is_of_wrong_type(test_input,expected_output):
     """
-    Method to test if parameter is a string
+    Method to test if parameter is a string or boolean or complex number
     """
     with pytest.raises(TypeError):
-        NEWORDER.get("five")
+        NEWORDER.get(test_input)
 
-def test_if_parameter_passed_is_a_boolean():
-    """
-    Method to test if the parameter is boolean.
-    """
-    with pytest.raises(TypeError):
-        NEWORDER.get(True)
 
 ####################### Tests for updating order status #################################
 def test_update_specific_order():
@@ -47,26 +47,9 @@ def test_update_specific_order():
     result = CLIENT().put('/api/v1/orders/1', content_type='application/json',
                           data=json.dumps({"order_status":"Accepted"}))
     assert result.status_code == 200
-
-def test_if_parameter_passed_to_the_put_function_is_a_string():
-    """
-    Method to check if the parameter passed is a string.
-    """
-    with pytest.raises(TypeError):
-        NEWORDER.put("ten")
-
-def test_if_parameter_passed_to_the_put_function_is_a_number_less_than_a_zero():
-    """
-    Method to check if the parameter passed is a negative number.
-    """
-    with pytest.raises(ValueError):
-        NEWORDER.put(-1)
-def test_if_parameter_passed_to_the_put_function_is_a_boolean():
-    """
-    Method to check if the parameter passed is boolean.
-    """
-    with pytest.raises(TypeError):
-        NEWORDER.put(True)
+    assert b"order_status" in result.data
+    assert b"username" in result.data
+    assert b"updated order" in result.data
 
 ############################# Tests for addng a new order ######################################
 def test_if_data_posted_is_in_form_of_json():
@@ -78,4 +61,10 @@ def test_if_data_posted_is_in_form_of_json():
                                                            "price":30000, "quantity":2}],
                                             "username":"Patra"}))
     assert result.status_code == 200
+    assert b"order_list" in result.data
+    assert b"username" in result.data
+    assert b"new_order" in result.data
+
+
+   
                
