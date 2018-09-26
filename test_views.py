@@ -9,6 +9,20 @@ MYAPP = APP
 CLIENT = MYAPP.test_client
 NEWORDER = Order()
 
+############################# Tests for addng a new order ######################################
+def test_if_data_posted_is_in_form_of_json():
+    """
+    Method to check if the data is in json form.
+    """
+    result = CLIENT().post('/api/v1/orders', content_type='application/json',
+                           data=json.dumps({"order_list":[{"item_id":1, "item_name":"Burger",
+                                                           "price":30000, "quantity":2}],
+                                            "username":"Patra"}))
+    assert result.status_code == 200
+    assert b"order_list" in result.data
+    assert b"username" in result.data
+    assert b"new_order" in result.data
+
 ########################## Tests for fetching all orders and a specific order###################################
 @pytest.mark.parametrize("test_input, expected_output",
                         [
@@ -54,21 +68,3 @@ def test_update_specific_order():
     assert b"order_status" in result.data
     assert b"username" in result.data
     assert b"updated order" in result.data
-
-############################# Tests for addng a new order ######################################
-def test_if_data_posted_is_in_form_of_json():
-    """
-    Method to check if the data is in json form.
-    """
-    result = CLIENT().post('/api/v1/orders', content_type='application/json',
-                           data=json.dumps({"order_list":[{"item_id":1, "item_name":"Burger",
-                                                           "price":30000, "quantity":2}],
-                                            "username":"Patra"}))
-    assert result.status_code == 200
-    assert b"order_list" in result.data
-    assert b"username" in result.data
-    assert b"new_order" in result.data
-
-
-   
-               

@@ -12,7 +12,7 @@ class Order(MethodView):
     """
     # order_1 = MakeOrder(1, "Ayesiga", [{"item_id": 1, "item_name":"Burger", "quantity":2,
     #                                     "price":30000}], None)
-     orders = []
+    orders = []
 
     def get(self, order_id):
         """
