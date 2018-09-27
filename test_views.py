@@ -19,9 +19,32 @@ def test_if_data_posted_is_in_form_of_json():
                                                            "price":30000, "quantity":2}],
                                             "username":"Patra"}))
     assert result.status_code == 200
-    assert b"order_list" in result.data
-    assert b"username" in result.data
-    assert b"new_order" in result.data
+    json_data = json.loads(result.data)
+    #verify whether order was saved with the same attributes and values
+    assert "new_order" in json_data
+    assert json_data['new_order']['order_list'][0]['item_name'] == "Burger"
+    assert json_data['new_order']['order_list'][0]['price'] == 30000
+    assert json_data['new_order']['order_list'][0]['quantity'] == 2
+    assert json_data['new_order']['username'] == "Patra"
+    assert json_data['new_order']['order_status'] == None
+    
+
+
+####################### Tests for updating order status ########################################
+def test_update_specific_order():
+    """
+    Method to update an order.
+    """
+    result = CLIENT().put('/api/v1/orders/1', content_type='application/json',
+                          data=json.dumps({"order_status":"Accepted"}))
+    assert result.status_code == 200
+    #fetch the order  again to verify whether the order_status has changed to Accepted
+    check_order = CLIENT().get('/api/v1/orders/1')
+    assert check_order.status_code ==200
+    json_data = json.loads(check_order.data)
+    #order_status value should now be Accepted
+    assert json_data['Specific order']['order_status'] == "Accepted"
+
 
 ########################## Tests for fetching all orders and a specific order###################################
 @pytest.mark.parametrize("test_input, expected_output",
@@ -41,7 +64,7 @@ def test_get_all_orders_OR_specific_order(test_input, expected_output):
     else:
         assert b"Specific order" in result.data
     
-
+# check for the order_id's data type
 @pytest.mark.parametrize("test_input, expected_output",
                         [
                             ('five','Please provide a non negative integer argument'),
@@ -57,14 +80,6 @@ def test_if_parameter__is_of_wrong_type(test_input,expected_output):
         NEWORDER.get(test_input)
 
 
-####################### Tests for updating order status #################################
-def test_update_specific_order():
-    """
-    Method to update an order.
-    """
-    result = CLIENT().put('/api/v1/orders/1', content_type='application/json',
-                          data=json.dumps({"order_status":"Accepted"}))
-    assert result.status_code == 200
-    assert b"order_status" in result.data
-    assert b"username" in result.data
-    assert b"updated order" in result.data
+
+
+    
