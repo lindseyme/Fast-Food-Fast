@@ -20,6 +20,8 @@ class Order(MethodView):
         """
         if order_id is None:
             # return a list of users
+            if not self.orders:
+                return jsonify({"Message":"There are no orders yet. Please make your first order."})
             return jsonify({"List of all orders": [order.__dict__ for order in self.orders]})
         if isinstance(order_id, int):
             if not isinstance(order_id, bool):
@@ -40,10 +42,19 @@ class Order(MethodView):
         """
         if 'order_list' in request.json and 'username' in request.json:
             if isinstance(request.json['username'], str):
+                for order in self.orders:
+                    if order.__dict__["username"] == request.json['username'] and order.__dict__['order_status'] is  None:
+                        list_index = 0
+                        for item in order.__dict__["order_list"]:
+                            if  item["item_id"] == request.json['order_list'][list_index]["item_id"]:
+                                item["quantity"] += request.json['order_list'][list_index]["quantity"]
+                                item["price"] += request.json['order_list'][list_index]["price"]
+                                return jsonify({'new_order':order.__dict__}), 201
+                            list_index += 1
                 new_order = MakeOrder(len(self.orders) + 1,
-                                      request.json['username'], request.json['order_list'], None)
+                                        request.json['username'], request.json['order_list'], None)
                 self.orders.append(new_order)
-                return jsonify({'new_order': new_order.__dict__}), 200
+                return jsonify({'new_order': new_order.__dict__}), 201
             return jsonify({"error message":"order_list should be a str"})
         return jsonify({"error message":"Define order_list and username keys in json structure"})
 
