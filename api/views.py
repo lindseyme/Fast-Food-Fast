@@ -1,5 +1,5 @@
 """
-In this script, we implement three restApi methods which are: GET,POST and PULL
+In this script, we implement three Fast Food Fast Api methods which are: GET,POST and PUT
 """
 from flask import jsonify, request
 from flask.views import MethodView

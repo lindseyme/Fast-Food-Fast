@@ -1,5 +1,5 @@
 """
-    Order class
+    Order class for creating a new order
 """
 class MakeOrder():
     """
