@@ -46,9 +46,9 @@ class Order(MethodView):
                     if order.__dict__["username"] == request.json['username'] and order.__dict__['order_status'] is  None:
                         list_index = 0
                         for item in order.__dict__["order_list"]:
-                            if  item["item_id"] == request.json['order_list'][list_index]["item_id"]:
+                            if item["item_id"] == request.json['order_list'][list_index]["item_id"]:
                                 item["quantity"] += request.json['order_list'][list_index]["quantity"]
-                                item["price"] += request.json['order_list'][list_index]["price"]
+                                item["price"] = item["price"] + request.json['order_list'][list_index]["price"]
                                 return jsonify({'new_order':order.__dict__}), 201
                             list_index += 1
                 new_order = MakeOrder(len(self.orders) + 1,
