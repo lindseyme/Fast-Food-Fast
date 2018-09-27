@@ -19,7 +19,7 @@ class Order(MethodView):
          Method that retrieves a list of orders and a specific order.
         """
         if order_id is None:
-            # return a list of users
+            # return a list of orders
             if not self.orders:
                 return jsonify({"Message":"There are no orders yet. Please make your first order."})
             return jsonify({"List of all orders": [order.__dict__ for order in self.orders]})
@@ -55,7 +55,7 @@ class Order(MethodView):
                                         request.json['username'], request.json['order_list'], None)
                 self.orders.append(new_order)
                 return jsonify({'new_order': new_order.__dict__}), 201
-            return jsonify({"error message":"order_list should be a str"})
+            return jsonify({"error message":"username should be a str"})
         return jsonify({"error message":"Define order_list and username keys in json structure"})
 
     def put(self, order_id):
@@ -67,12 +67,11 @@ class Order(MethodView):
                 if order_id > 0:
                     if 'order_status' in request.json and isinstance(request.json
                                                                     ['order_status'], str):
+                        order_json = request.get_json()
                         for order in self.orders:
                             if order.__dict__['order_id'] == order_id:
-                                order_json = request.get_json()
                                 order.__dict__['order_status'] = order_json['order_status']
-                                return jsonify({'updated order':
-                                                [order.__dict__ for order in self.orders]})
+                                return jsonify({'updated order': order.__dict__})
                         return jsonify({"Error Message":"The order with that id doesn't exist."})
                     return jsonify({"error message":"A string order_status should be defined"})
                 raise ValueError("Please provide a non negative integer argument")   
