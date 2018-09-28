@@ -42,19 +42,35 @@ class Order(MethodView):
         """
         if 'order_list' in request.json and 'username' in request.json:
             if isinstance(request.json['username'], str):
-                for order in self.orders:
-                    if order.__dict__["username"] == request.json['username'] and order.__dict__['order_status'] is  None:
-                        list_index = 0
-                        for item in order.__dict__["order_list"]:
-                            if item["item_id"] == request.json['order_list'][list_index]["item_id"]:
-                                item["quantity"] += request.json['order_list'][list_index]["quantity"]
-                                item["price"] = item["price"] + request.json['order_list'][list_index]["price"]
-                                return jsonify({'new_order':order.__dict__}), 201
-                            list_index += 1
-                new_order = MakeOrder(len(self.orders) + 1,
-                                        request.json['username'], request.json['order_list'], None)
-                self.orders.append(new_order)
-                return jsonify({'new_order': new_order.__dict__}), 201
+                item_index = 0
+                errors = []
+                for food_item in request.json['order_list']:
+                    if not isinstance(request.json['order_list'][item_index]["item_id"],int) or not isinstance(request.json['order_list'][item_index]["quantity"],int) or not isinstance(request.json['order_list'][item_index]["price"],int):
+                        errors.append("The item_id/quantity/price should be a non negative integer")
+                    if not isinstance(request.json['order_list'][item_index]["item_name"],str):
+                        errors.append("The item name should be a string")
+                    if request.json['order_list'][item_index]["item_name"] == "" or request.json['order_list'][item_index]["item_id"] == "" or request.json['order_list'][item_index]["quantity"] == "" or request.json['order_list'][item_index]["price"] == "":
+                        errors.append("The item_id/quantity/price should be not be empty")
+                    if isinstance(request.json['order_list'][item_index]["item_id"],int) and isinstance(request.json['order_list'][item_index]["quantity"],int) and isinstance(request.json['order_list'][item_index]["price"],int):
+                        if request.json['order_list'][item_index]["item_id"] < 1 or request.json['order_list'][item_index]["quantity"] < 1 or request.json['order_list'][item_index]["price"] < 1 or request.json['order_list'][item_index]["price"] < 1:
+                            errors.append("The item_id/quantity/price should be not be less than empty")
+                    item_index += 1 
+
+                if not errors:
+                    for order in self.orders:
+                        if order.__dict__["username"] == request.json['username'] and order.__dict__['order_status'] is  None:
+                            list_index = 0
+                            for item in order.__dict__["order_list"]:
+                                if item["item_id"] == request.json['order_list'][list_index]["item_id"]:
+                                    item["quantity"] += request.json['order_list'][list_index]["quantity"]
+                                    item["price"] = item["price"] + request.json['order_list'][list_index]["price"]
+                                    return jsonify({'new_order':order.__dict__}), 201
+                                list_index += 1
+                    new_order = MakeOrder(len(self.orders) + 1,
+                                            request.json['username'], request.json['order_list'], None)
+                    self.orders.append(new_order)
+                    return jsonify({'new_order': new_order.__dict__}), 201
+                return jsonify({"error message(s)": errors})
             return jsonify({"error message":"username should be a str"})
         return jsonify({"error message":"Define order_list and username keys in json structure"})
 

@@ -1,5 +1,5 @@
 """
-This script contains the different urls.
+This script contains the different routes for the api methods.
 """
 from api.views import Order
 
@@ -7,7 +7,7 @@ class Urls():
     """
      This class fetches urls.
     """
-    @staticmethod
+    @staticmethod 
     def fetch_urls(app):
         """
          Method that fetches
