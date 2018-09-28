@@ -10,7 +10,7 @@ class Order(MethodView):
     """
     Class order defines the restApi methods.
     """
-    # order_1 = MakeOrder(1, "Ayesiga", [{"item_id": 1, "item_name":"Burger", "quantity":2,
+    # order_1 = MakeOrder(1, "Ayesiga", [{"item_id": 1,"item_name":"Burger", "quantity":2,
     #                                     "price":30000}], None)
     orders = []
 

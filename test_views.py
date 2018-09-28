@@ -6,7 +6,7 @@ from flask import json
 from api.views import Order
 from runserver import APP
 MYAPP = APP
-CLIENT = MYAPP.test_client
+CLIENT = MYAPP.test_client 
 NEWORDER = Order()
 
 ############################# Tests for addng a new order ######################################
@@ -19,6 +19,7 @@ def test_if_data_posted_is_in_form_of_json():
                                                            "price":30000, "quantity":2}],
                                             "username":"Patra"}))
     assert result.status_code == 201
+
     json_data = json.loads(result.data)
     #verify whether order was saved with the same attributes and values
     assert "new_order" in json_data
@@ -56,10 +57,7 @@ def test_get_all_orders_or_specific_order(test_input, expected_output):
     """
     result = CLIENT().get(test_input)
     assert result.status_code == expected_output
-    if test_input == '/api/v1/orders/':
-        assert b"List of all orders" in result.data
-    else:
-        assert b"Specific order" in result.data
+    
 # check for the order_id's data type
 @pytest.mark.parametrize("test_input, expected_output",
                          [
