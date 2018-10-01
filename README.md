@@ -1,70 +1,76 @@
-# Fast Food Fast
+## Users
 
-Fast Food Fast is a food delivery service app for a restaurant.
+### User registration.
+Send a `POST` request to `auth/register` endpoint with the payload in
+`Json`
 
-## Badges
-Travis Badge
-[![Build Status](https://travis-ci.org/lindseyme/Fast-Food-Fast.svg?branch=api_ci)](https://travis-ci.org/lindseyme/Fast-Food-Fast)
+An example would be
+```
+{
+  "email": "example@gmail.com",
+  "password": "123456"
+}
+```
 
-Coveralls
-[![Coverage Status](https://coveralls.io/repos/github/lindseyme/Fast-Food-Fast/badge.svg?branch=api_ci)](https://coveralls.io/github/lindseyme/Fast-Food-Fast?branch=api_ci)
+The email value must be a valid email format and the password must be
+four characters and above.
+If the email is invalid or empty and the password is empty or less than
+four character, the response `status` will be `failed` with the `message`
+`Missing or wrong email format or password is less than four characters`
+and a `status code` of `202`
 
-Code Climate
-[![Maintainability](https://api.codeclimate.com/v1/badges/d394577ec343cf74808c/maintainability)](https://codeclimate.com/github/lindseyme/Fast-Food-Fast/maintainability)
+As shown below:
+```
+{
+    "message": "Missing or wrong email format or password",
+    "status": "failed"
+}
+```
 
-## APIs for Fast Food Fast
-These are APIs to be used to interface the fuctionality of the Fast Food Fast application
+If the user already exists then they wont be registered again, the
+following response will be returned.
+```
+{
+    "message": "Failed, User already exists, Please sign In",
+    "status": "failed"
+}
+```
 
-## Functionality
-- Placing order for food
-- Obtaining a list of orders.
-- Getting a specific order.
-- Updating the order status.
- 
-These are the endpoints:
+If the request is successful and the user has been registered the
+response below is returned. With an auth token
+```
+{
+    "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MDM0ODQ5OTYsImlhdCI6MTUwMzM5ODU4Niwic3ViIjo1fQ.GC6IEOohdo_xrz9__UeugIlir0qtJdKbEzBtLgqjt5A",
+    "message": "Successfully registered",
+    "status": "success"
+}
+```
 
-| Method  | Endpoint          | Description                      | Body                  |
-| --------|:-----------------:| -------------------------------: |----------------------:|
-| GET     | /api/v1/orders/   | Get all orders|                  |                       |
-| GET     | /api/v1/orders/id | Get specific orders using an id  |                       |   
-|POST     | /api/v1/orders    | Place a new orders               | e.g  {"order_list":[{"item_id": 1, "item_name":"Burger", "quantity":2,"price":30000}], "username":"Patra"}  |
-|PUT      | /api/v1/orders/id | Update a specific orders status  | e.g  {"order_status":"Accepted"} |
+### User Login
+The user is able to login by send sending a `POST` request to
+`auth/login` with the json payload below.
+```
+{
+  "email": "example@gmail.com",
+  "password": "123456"
+}
+```
 
-APIs are Hosted at https://fast-food-fast-api-v4.herokuapp.com
+If the request is successful the following response is returned:
+```
+{
+    "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MDM0OTIzMzQsImlhdCI6MTUwMzQwNTkyNCwic3ViIjo1fQ.dRDTIP93WNRNv5Q7vCLLHuZfwvH5ze2B_VdRm6qHJbU",
+    "message": "Successfully logged In",
+    "status": "success"
+}
+```
 
-Sample get all orders https://fast-food-fast-api-v4.herokuapp.com/api/v1/orders/
-
-## Setting Up for Development
-
-These are instructions for setting up Fast Food Fast app in a development enivornment.
-
-### Prerequisites
-
-- Python 3.4.4
-
-- Install necessary requirements
-
-  ```
-  $ pip install -r requirements.txt
-  ```
-
-- Run development server
-  ```
-  $ python runserver.py
-  ```
-
-This site should now be running at http://localhost:5000
-
-### Run Tests
-
-- Make sure pytest is installed
-
-  ```
-  $pip install -U pytest
-  ```
-  
-- Run the test by
-
-  ```
-  $ pytest
-  ```
+Otherwise if the email is invalid, user with the email does not exist or
+the password length is incorrect or less than four characters, the
+following response is returned.
+```
+{
+    "message": "Missing or wrong email format or password is less than four characters",
+    "status": "failed"
+}
+```
