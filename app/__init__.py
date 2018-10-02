@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = "thisissecret"
 bcrypt = Bcrypt(app)
 
 # Initialize connections to  postgresql server
-conn = psycopg2.connect(database = "testdb", user="postgres", password = "GODISGOOD1", host ="127.0.0.1", port= 5555)
+conn = psycopg2.connect(database = "testdb", user="postgres", password = "Ayesiga", host ="127.0.0.1", port= 5432)
 
 # Import the application views
 from app.auth.views import GetUrls
