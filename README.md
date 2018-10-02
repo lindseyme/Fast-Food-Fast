@@ -2,7 +2,7 @@
 
 ### User registration.
 Note: You have to navigate to app/auth/__init__.py file to enter your right database name and password
-Send a `POST` request to `auth/register` endpoint with the payload in
+Send a `POST` request to `auth/signup` endpoint with the payload in
 `Json`
 
 An example would be

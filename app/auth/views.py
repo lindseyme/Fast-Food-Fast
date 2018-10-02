@@ -79,11 +79,11 @@ class GetUrls:
     @staticmethod
     def fetch_urls(app):
         # Register classes as views
-        registration_view = RegisterUser.as_view('register')
+        registration_view = RegisterUser.as_view('signup')
         login_view = LoginUser.as_view('login')
-        logout_view = LogOutUser.as_view('logout')
+        logout_view = LogOutUser.as_view('signout')
 
         # Add rules for the api Endpoints
-        app.add_url_rule('/auth/register', view_func=registration_view, methods=['POST'])
+        app.add_url_rule('/auth/signup', view_func=registration_view, methods=['POST'])
         app.add_url_rule('/auth/login', view_func=login_view, methods=['POST'])
-        app.add_url_rule('/auth/logout', view_func=logout_view, methods=['POST'])
+        app.add_url_rule('/auth/signout', view_func=logout_view, methods=['POST'])
