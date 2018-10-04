@@ -12,7 +12,7 @@ Fast Food Fast is a food delivery service app for a restaurant.
 - View the order history for a particular user.
 
 ## Api end points
-| Method  | Endpoint          | Description                      |                   |
+| Method  | Endpoint          | Description                      |
 | --------|:-----------------:| -------------------------------: |
 | POST     | auth/signup      | Register a user                  |
 | POST     | auth/login       | Login a user                     | 
