@@ -24,9 +24,7 @@ class TestingConfig(BaseConfig):
     """
     DEBUG = True
     TESTING = True
-    AUTH_TOKEN_EXPIRY_DAYS = 0
-    AUTH_TOKEN_EXPIRY_SECONDS = 3
-    AUTH_TOKEN_EXPIRATION_TIME_DURING_TESTS = 5
+ 
     
 
 
