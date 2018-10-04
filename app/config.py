@@ -24,7 +24,7 @@ class TestingConfig(BaseConfig):
     """
     DEBUG = True
     TESTING = True
- 
+  
     
 
 
