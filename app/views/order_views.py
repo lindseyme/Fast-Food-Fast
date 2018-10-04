@@ -7,35 +7,39 @@ from app import conn
 
 cur = conn.cursor()
 
-class Order(MethodView):
-    """
-    Class order defines the restApi methods.
-    """             
-    @token_required   
-    def put(current_user, self, order_id):
-        """
-        Method for updating the order status
-        """
-        if current_user == "admin@admin.com":
-            try:
-                int(order_id)
-            except ValueError:
-                return response('failed', 'Please provide a valid Order Id', 400)
-            else:
-                if request.content_type == 'application/json':
-                    post_data = request.get_json()
-                    order_status =  post_data.get('order_status')
-                    if order_status:
-                        if isinstance(order_status,str):
-                            if order_status in ["New","Processing","Cancelled","Complete"]:
-                                MakeOrder.update(order_status,order_id)
-                                return response('success', 'Order Status successfully updated',200)
-                            return response('failed', 'The Status of an order could either be New , Processing ,Cancelled or Complete .', 400)          
-                        return response('failed', 'Order status should be a string', 400)
-                    return response('failed', 'Order status cannot be empty', 400)
-                return response('failed', 'Content-type must be json', 400)
-        return response('failed', 'Sorry, this request requires administrative privileges to run', 401)
 
+ 
+class OrderHistory(MethodView):
+    @token_required
+    def get(current_user,self):
+        
+        cur = conn.cursor()
+        sql1 = """
+            SELECT user_id FROM users WHERE email=%s 
+        """
+        cur.execute(sql1,(current_user,))
+        user = cur.fetchone()
+        user_id = user[0]
+
+        sql2 = """
+            SELECT * FROM orders WHERE user_id=%s 
+        """
+        cur.execute(sql2,(user_id,))
+        orders = cur.fetchall()
+        order_history = []
+        if orders:
+            for order in orders:
+                order_details={
+                   "order_id":order[0],
+                   "item_name":order[3],
+                   "quantity":order[5],
+                   "price":order[4],
+                   "order_status":order[6],
+                   "created_at":order[7]
+                }
+                order_history.append(order_details)
+                return response("success",order_history,200)
+        return response('success', 'No order history', 200)
 
 
 
