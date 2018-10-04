@@ -59,7 +59,7 @@ class User:
         """
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes = 30),
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes = 60),
                 'sub': user_id
             }
             return jwt.encode(

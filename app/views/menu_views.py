@@ -2,12 +2,13 @@ from flask.views import MethodView
 from flask import request
 from app.models.menu_model import OrderMenu
 from app.views.helper import response, response_auth,token_required
+from app.models.menu_model import OrderMenu
 from app import conn
 
 cur = conn.cursor()
 class AddMenuItem(MethodView):
-    
-    def get(self):
+    @token_required
+    def get(current_user,self):
         sql = """
                 SELECT * FROM menu 
             """
@@ -25,11 +26,13 @@ class AddMenuItem(MethodView):
 
             return response('success', all_items, 200)
         return response('success', "Menu is empty, Please consult the caterer.", 200)
-        
-    def post(self):
-            """
-            Register food items, and add them to the database
-            """
+
+    @token_required
+    def post(current_user,self):
+        """
+        Register food items, and add them to the database
+        """
+        if current_user == "admin@admin.com":
             if request.content_type == 'application/json':
                 post_data = request.get_json()
                 item_name = post_data.get('item_name')
@@ -44,10 +47,11 @@ class AddMenuItem(MethodView):
                         else:
                             return response('failed', 'Failed, Item already exists, Please add a different one', 400)
                     return response('failed', 'Failed, Item name cannot be empty or price should be 1 and above.', 400)
-                                   
+                                
                 return response('failed', 'Item name and quantity should be a string and a non negative integer respectively', 400)
                                 
             return response('failed', 'Content-type must be json', 400)
+        return response('failed', 'Sorry, this request requires administrative privileges to run', 401)
         
 
 class GetMenuUrls:

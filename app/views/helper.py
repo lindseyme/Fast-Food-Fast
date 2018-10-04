@@ -47,7 +47,7 @@ def token_required(f):
                 'message': message
             })), 401
 
-        return f(*args, **kwargs)
+        return f(current_user,*args, **kwargs)
 
     return decorated_function
 
