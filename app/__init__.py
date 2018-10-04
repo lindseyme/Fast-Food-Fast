@@ -23,5 +23,6 @@ bcrypt = Bcrypt(app)
 conn = psycopg2.connect(database = "testdb", user="postgres", password = "admin", host ="localhost", port= 5555)
 
 # Import the application views
-from app.views.menu_views import GetMenuUrls
-GetMenuUrls.fetch_urls(app)
+
+from app.views.order_views import GetOrderUrls
+GetOrderUrls.fetch_urls(app)
