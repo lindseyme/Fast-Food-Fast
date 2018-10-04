@@ -2,8 +2,6 @@ import re
 from flask import request, jsonify, make_response
 from flask.views import MethodView
 from app import bcrypt, conn
-
-
 from app.models.user_model import User, BlackListToken
 from app.views.helper import response, response_auth,token_required
 
@@ -40,74 +38,16 @@ class RegisterUser(MethodView):
         return response('failed', 'Content-type must be json', 400)
 
 
-class LoginUser(MethodView):
-    def post(self):
-        """
-        Login a user if the supplied credentials are correct.
-        :return: Http Json response
-        """
-        auth = request.authorization
-        if not auth or not auth.username or not auth.password:
-            return response('failed', {"WWW-Authenticate":"Basic realm='Login Required'"}, 401)
-        
-        if re.match(r"[^@]+@[^@]+\.[^@]+", auth.username) and len(auth.password) > 4:
-            sql1 = """
-                SELECT * FROM users WHERE email=%s
-            """
-            cur.execute(sql1,(auth.username,))
-            user = cur.fetchone()
-            if user and bcrypt.check_password_hash(user[2], auth.password):
-                return response_auth('success', 'Successfully logged In', User.encode_auth_token(user[0]), 200)
-            return response('failed', 'User does not exist or password is incorrect', 401)
-        return response('failed', 'Missing or wrong email format or password is less than four characters', 401)
-        # return response('failed', 'Content-type must be json', 202)
 
-
-class LogOutUser(MethodView):
-    """
-    Class to log out a user
-    """
-
-    def post(self):
-        """
-        Try to logout a user using a token
-        :return:
-        """
-        if 'x-access-token' in request.headers:
-            auth_token = request.headers['x-access-token']
-
-        if not auth_token:
-            return make_response(jsonify({
-                'status': 'failed',
-                'message': 'Token is missing'
-            })), 401
-
-        decoded_token_response = User.decode_auth_token(auth_token)
-        if not isinstance(decoded_token_response, str):
-            token = BlackListToken(auth_token)
-            token.blacklist()
-            return response('success', 'Successfully logged out', 200)
-        return response('failed', decoded_token_response, 401)
-
-
-        
-
-
-class TestToken(MethodView):
-    @token_required
-    def get(self):
-        return jsonify({'message': 'You man rock'})       
 
 class GetAuthUrls:
     @staticmethod
     def fetch_urls(app):
         # Register classes as views
         registration_view = RegisterUser.as_view('register')
-        login_view = LoginUser.as_view('login')
-        logout_view = LogOutUser.as_view('logout')
-        token_view = TestToken.as_view('token')
+
+
         # Add rules for the api Endpoints
         app.add_url_rule('/auth/signup', view_func=registration_view, methods=['POST'])
-        app.add_url_rule('/auth/login', view_func=login_view, methods=['POST'])
-        app.add_url_rule('/auth/signout', view_func=logout_view, methods=['POST'])
-        app.add_url_rule('/auth/token', view_func=token_view, methods=['GET'])
+      
+       

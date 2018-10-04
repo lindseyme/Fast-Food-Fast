@@ -1,0 +1,15 @@
+[
+  "tests/test_order_views.py::TestOrdersBluePrint::test_get_orders",
+  "tests/test_order_views.py::TestOrdersBluePrint::test_get_specific_order",
+  "tests/test_order_views.py::TestOrdersBluePrint::test_orders_creation",
+  "tests/test_order_views.py::TestOrdersBluePrint::test_update_order_status",
+  "tests/test_user_views.py::TestAuthBluePrint::test_login_has_incorrect_email_and_valid_length_password",
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_can_login",
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_email_validity",
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_is_already_registered",
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_password_length_is_greater_than_four_characters",
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_registration",
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_registration_fails_if_content_type_not_json",
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_registration_missing_email_or_and_password",
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_trying_to_login_does_not_exist_or_passwords_do_not_much"
+]
