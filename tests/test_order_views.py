@@ -6,18 +6,18 @@ import json
 
 
 class TestOrdersBluePrint(BaseTestCase):
-    def test_orders_creation(self):
-        """
-        Test an order is successfully created through the api
-        :return:
-        """
-        with self.client:
-            response = self.create_order()
-            data = json.loads(response.data.decode('utf-8'))
-            self.assertTrue(data['status'] == 'success')
-            self.assertTrue(data['message'] == 'Order made successfully')
-            self.assertTrue(response.content_type == 'application/json')
-            self.assertEqual(response.status_code, 201)
+    # def test_orders_creation(self):
+    #     """
+    #     Test an order is successfully created through the api
+    #     :return:
+    #     """
+    #     with self.client:
+    #         response = self.create_order()
+    #         data = json.loads(response.data.decode('utf-8'))
+    #         self.assertTrue(data['status'] == 'success')
+    #         self.assertTrue(data['message'] == 'Order made successfully')
+    #         self.assertTrue(response.content_type == 'application/json')
+    #         self.assertEqual(response.status_code, 201)
     
     def test_get_orders(self):
         """

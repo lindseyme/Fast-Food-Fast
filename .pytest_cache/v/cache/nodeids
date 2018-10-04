@@ -1,8 +1,6 @@
 [
   "tests/test_order_views.py::TestOrdersBluePrint::test_get_orders",
   "tests/test_order_views.py::TestOrdersBluePrint::test_get_specific_order",
-  "tests/test_order_views.py::TestOrdersBluePrint::test_orders_creation",
-  "tests/test_order_views.py::TestOrdersBluePrint::test_update_order_status",
   "tests/test_user_views.py::TestAuthBluePrint::test_login_has_incorrect_email_and_valid_length_password",
   "tests/test_user_views.py::TestAuthBluePrint::test_user_can_login",
   "tests/test_user_views.py::TestAuthBluePrint::test_user_email_validity",
