@@ -10,71 +10,35 @@ cur = conn.cursor()
 class Order(MethodView):
     """
     Class order defines the restApi methods.
-    """
-    @token_required
-    def get(current_user,self, order_id):
+    """             
+    @token_required   
+    def put(current_user, self, order_id):
         """
-        Return all orders if order id is None or return an order with the supplied order Id.
-        :param current_user: User
-        :param order_id: 
-        :return:
+        Method for updating the order status
         """
         if current_user == "admin@admin.com":
-            if order_id is None:
-                cur = conn.cursor()
-                sql = """
-                    SELECT * FROM orders 
-                """
-                cur.execute(sql)
-                rows = cur.fetchall()
-                all_orders = []
-                if rows:
-                    for row in rows:
-                        order = {
-                            'order_id': row[0],
-                            'user_id': row[1],
-                            'item_id':row[2],
-                            'item_name':row[3],
-                            'quantity':row[4],
-                            'price':row[5],
-                            'order_status':row[6],
-                            'created_at':row[7]
-                        }
-                        all_orders.append(order)
-
-                    return response_for_user_orders('success', all_orders, 200)
-                return response('success', "There are no orders yet", 200)
-            
-
             try:
                 int(order_id)
             except ValueError:
                 return response('failed', 'Please provide a valid Order Id', 400)
             else:
-                # user_bucket = User.get_by_id(current_user.id).buckets.filter_by(id=bucket_id).first()
-                cur = conn.cursor()
-                sql = """
-                    SELECT * FROM orders WHERE order_id=%s
-                """
-                cur.execute(sql,(order_id,))
-                row = cur.fetchone()
-                if row:
-                    user_order = order = {
-                            'order_id': row[0],
-                            'user_id': row[1],
-                            'item_id':row[2],
-                            'item_name':row[3],
-                            'quantity':row[4],
-                            'price':row[5],
-                            'order_status':row[6],
-                            'created_at':row[7]
-                        }
-
-                    return response_for_user_order('success', user_order, 200)
-                return response('failed', "Order not found", 404) 
+                if request.content_type == 'application/json':
+                    post_data = request.get_json()
+                    order_status =  post_data.get('order_status')
+                    if order_status:
+                        if isinstance(order_status,str):
+                            if order_status in ["New","Processing","Cancelled","Complete"]:
+                                MakeOrder.update(order_status,order_id)
+                                return response('success', 'Order Status successfully updated',200)
+                            return response('failed', 'The Status of an order could either be New , Processing ,Cancelled or Complete .', 400)          
+                        return response('failed', 'Order status should be a string', 400)
+                    return response('failed', 'Order status cannot be empty', 400)
+                return response('failed', 'Content-type must be json', 400)
         return response('failed', 'Sorry, this request requires administrative privileges to run', 401)
-                
-    
+
+
+
+
 class GetOrderUrls:
     @staticmethod
     def fetch_urls(app):
