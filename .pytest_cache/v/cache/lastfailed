@@ -1,0 +1,16 @@
+{
+  "tests/test_order_views.py::TestOrdersBluePrint::test_order_status": true,
+  "tests/test_order_views.py::TestOrdersBluePrint::test_orders_creation": true,
+  "tests/test_order_views.py::TestOrdersBluePrint::test_update_order_status": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_expired_user_token_user_log_out": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_log_out_has_a_valid_token": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_log_out_request_contains_an_authorization_header": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_login_request_payload_is_json": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_token_required_method_authorization_token_missing": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_token_required_method_blacklisted_authorization_token": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_token_required_method_expired_authorization_token": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_token_required_method_incorrect_authorization_token": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_token_required_method_invalid_authorization_token": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_token_was_blacklisted": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_valid_user_log_out": true
+}
