@@ -17,12 +17,20 @@ class TestAuthBluePrint(BaseTestCase):
         :return:
         """
         with self.client:
-            response = self.register_user(email_generator()+'@gmail.com', '123456')
+            response = self.register_user('admin@admin.com', '12345')
             data = json.loads(response.data.decode())
-            self.assertTrue(data['status'] == 'success')
-            self.assertTrue(data['message'] == 'Successfully registered')
-            self.assertTrue(response.content_type == 'application/json')
-            self.assertEqual(response.status_code, 201)
+            if data['message'] == 'Successfully registered':
+                self.assertTrue(data['status'] == 'success')
+                self.assertTrue(response.content_type == 'application/json')
+                self.assertEqual(response.status_code, 201)
+            else:
+                response = self.register_user(email_generator()+'@gmail.com', '123456')
+                data = json.loads(response.data.decode())
+                self.assertTrue(data['status'] == 'success')
+                self.assertTrue(data['message'] == 'Successfully registered')
+                self.assertTrue(response.content_type == 'application/json')
+                self.assertEqual(response.status_code, 201)
+
 
     def test_user_registration_fails_if_content_type_not_json(self):
         """

@@ -64,7 +64,8 @@ class User:
             }
             return jwt.encode(
                 payload,
-                app.config['SECRET_KEY']
+                app.config['SECRET_KEY'],
+                algorithm='HS256'
             )
         except Exception as e:
             return e
@@ -77,7 +78,7 @@ class User:
         :return:
         """
         try:
-            payload = jwt.decode(token, app.config['SECRET_KEY'])
+            payload = jwt.decode(token, app.config['SECRET_KEY'],algorithms='HS256')
             is_token_blacklisted = BlackListToken.check_blacklist(token)
             if is_token_blacklisted:
                 return 'Token was Blacklisted, Please login In'

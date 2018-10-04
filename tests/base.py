@@ -57,18 +57,14 @@ class BaseTestCase(TestCase):
         Helper function to create a menu
         :return:
         """
-        token = self.get_user_token(self)
+        token = self.get_user_token()
         response = self.client.post(
             '/menu',
-            data=json.dumps({"item_name":item_name_generator(),"price":25000}),
+            data=json.dumps({"item_name":"Pizza","price":25000}),
             headers={"x-access-token": token},
             content_type='application/json'
         )
-        data = json.loads(response.data.decode())
-        self.assertEqual(response.status_code, 201)
-        self.assertTrue(data['status'], 'success')
-        self.assertTrue(data['item_name'], 'Pizza')
-        self.assertTrue(data['price'], 25000)
+        return response
         
 
     def create_order(self):
@@ -77,7 +73,7 @@ class BaseTestCase(TestCase):
         :return:
         """
         token = self.get_user_token()
-        results = self.client.post('users/orders',data=json.dumps({"item_name":item_name_generator(),"quantity":2}),headers={"x-access-token": token},content_type='application/json')
+        results = self.client.post('users/orders',data=json.dumps({"item_name":"Pizza","quantity":2}),headers={"x-access-token": token},content_type='application/json')
         return results
     
     def get_user_token(self):
