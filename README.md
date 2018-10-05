@@ -20,7 +20,7 @@ coveralls
 
 ## Api end points
 | Method  | Endpoint          | Description                      |
-| --------|:-----------------:| -------------------------------: |
+| --------|:-----------------:| --------------------------------:|
 | POST     | auth/signup      | Register a user                  |
 | POST     | auth/login       | Login a user                     | 
 | POST     | users/orders     | Place an order for food.         |
