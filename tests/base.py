@@ -46,6 +46,7 @@ class BaseTestCase(TestCase):
         Helper method for registering a user with dummy data
         :return:
         """
+        response = self.register_user('admin@admin.com', '12345')
         return self.client.post(
             'auth/login',
             content_type='application/json',

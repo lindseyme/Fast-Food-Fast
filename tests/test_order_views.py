@@ -43,9 +43,14 @@ class TestOrdersBluePrint(BaseTestCase):
         token = self.get_user_token()
         response = self.client.get('orders/1',headers={"x-access-token": token},content_type='application/json')
         data = json.loads(response.data.decode('utf-8'))
-        self.assertEqual(data['status'], 'success')
-        self.assertEqual(response.status_code, 200)
-               
+        if response.status_code == 404:
+            self.assertEqual(data['status'], 'failed')
+            self.assertEqual(data['message'], 'Order not found')
+            self.assertEqual(response.status_code, 404)
+        elif  response.status_code == 200:
+            self.assertEqual(data['status'], 'success')
+            self.assertEqual(response.status_code, 200)
+
 
     def test_get_order_history(self):
         """
@@ -53,10 +58,11 @@ class TestOrdersBluePrint(BaseTestCase):
         :return:
         """
         token = self.get_user_token()
-        response = self.client.get('orders/1',headers={"x-access-token": token},content_type='application/json')
+        response = self.client.get('/users/orders',headers={"x-access-token": token},content_type='application/json')
         data = json.loads(response.data.decode('utf-8'))
         self.assertEqual(data['status'], 'success')
         self.assertEqual(response.status_code, 200)
+      
         
      
     

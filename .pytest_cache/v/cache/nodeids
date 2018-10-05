@@ -1,8 +1,6 @@
 [
   "tests/test_config.py::TestDevelopmentConfig::test_app_in_development",
   "tests/test_config.py::TestTestingConfig::test_app_in_testing",
-  "tests/test_main_app.py::TestMainAppCase::test_http_method_not_found",
-  "tests/test_main_app.py::TestMainAppCase::test_page_not_found",
   "tests/test_menu_views.py::TestAuthBluePrint::test_create_menu",
   "tests/test_order_views.py::TestOrdersBluePrint::test_get_order_history",
   "tests/test_order_views.py::TestOrdersBluePrint::test_get_orders",
