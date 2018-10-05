@@ -63,7 +63,6 @@ scandir==1.9.0
 scipy==1.1.0
 simplegeneric==0.8.1
 six==1.11.0
-statsmodels==0.9.0
 tinydb==3.9.0.post1
 traitlets==4.3.2
 tuspy==0.2.1
