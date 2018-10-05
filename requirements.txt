@@ -74,4 +74,3 @@ wcwidth==0.1.7
 Werkzeug==0.14.1
 win-unicode-console==0.5
 wrapt==1.10.11
-
