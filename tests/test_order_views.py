@@ -75,7 +75,7 @@ class TestOrdersBluePrint(BaseTestCase):
         response = self.client.put('orders/1',headers={"x-access-token": token}, data=json.dumps({"order_status":"Complete"}), content_type='application/json')
         data = json.loads(response.data.decode('utf-8'))
         self.assertEqual(data['status'], 'success')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         self.assertEqual(data['message'], 'Order Status successfully updated')
         
         
