@@ -1,0 +1,13 @@
+var embed = new Apiary.Embed({
+    "subdomain": "fast-food-fast-api-ch3",
+    "preferences": {
+        "element": "#documentation",
+        "displayHttpMethods": true
+    },
+    "theme": {
+        "fontFamily": "Roboto"
+    },
+    "customFonts": {
+        "googleFonts": "https://fonts.googleapis.com/css?family=Roboto"
+    }
+});
