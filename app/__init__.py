@@ -25,7 +25,9 @@ conn = psycopg2.connect(database = "testdb")
 # Import the application views
 from app.views.user_views import GetAuthUrls
 from app.views.menu_views import GetMenuUrls
+from app.docs.views import docs
 from app.views.order_views import GetOrderUrls
 GetAuthUrls.fetch_urls(app)
 GetMenuUrls.fetch_urls(app)
 GetOrderUrls.fetch_urls(app)
+app.register_blueprint(docs)
