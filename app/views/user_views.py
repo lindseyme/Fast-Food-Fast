@@ -23,18 +23,20 @@ class RegisterUser(MethodView):
         :return: Json Response with the user`s token
         """
         if request.content_type == 'application/json':
-            post_data = request.get_json()
-            email = post_data.get('email')
-            password = post_data.get('password')
-            
-            if re.match(r"[^@]+@[^@]+\.[^@]+", email) and len(password) > 4:
-                user = User.get_by_email(email)
-                if not user:
-                    User(email=email, password=password).save()
-                    return response('success', 'Successfully registered', 201)
-                else:
-                    return response('failed', 'Failed, User already exists, Please sign In', 400)
-            return response('failed', 'Missing or wrong email format or password is less than four characters', 400)
+            if 'email' in request.json and 'password' in request.json:
+                post_data = request.get_json()
+                email = post_data.get('email')
+                password = post_data.get('password')
+                
+                if re.match(r"[^@]+@[^@]+\.[^@]+", email) and len(password) > 4:
+                    user = User.get_by_email(email)
+                    if not user:
+                        User(email=email, password=password).save()
+                        return response('success', 'Successfully registered', 201)
+                    else:
+                        return response('failed', 'Failed, User already exists, Please sign In', 400)
+                return response('failed', 'Missing or wrong email format or password is less than four characters', 400)
+            return response('failed', 'Email or password is missing', 400)
         return response('failed', 'Content-type must be json', 400)
 
 
@@ -53,6 +55,7 @@ class LoginUser(MethodView):
             password = post_data.get('password')
         
         if re.match(r"[^@]+@[^@]+\.[^@]+", email) and len(password ) > 4:
+            cur = conn.cursor()
             sql1 = """
                 SELECT * FROM users WHERE email=%s
             """

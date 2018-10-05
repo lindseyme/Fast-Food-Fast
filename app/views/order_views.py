@@ -119,18 +119,26 @@ class Order(MethodView):
             except ValueError:
                 return response('failed', 'Please provide a valid Order Id', 400)
             else:
-                if request.content_type == 'application/json':
-                    post_data = request.get_json()
-                    order_status =  post_data.get('order_status')
-                    if order_status:
-                        if isinstance(order_status,str):
-                            if order_status in ["New","Processing","Cancelled","Complete"]:
-                                MakeOrder.update(order_status,order_id)
-                                return response('success', 'Order Status successfully updated',200)
-                            return response('failed', 'The Status of an order could either be New , Processing ,Cancelled or Complete .', 400)          
-                        return response('failed', 'Order status should be a string', 400)
-                    return response('failed', 'Order status cannot be empty', 400)
-                return response('failed', 'Content-type must be json', 400)
+                cur = conn.cursor()
+                sql1 = """
+                    SELECT order_id FROM orders WHERE order_id=%s 
+                """
+                cur.execute(sql1,(order_id,))
+                order = cur.fetchone()
+                if order:
+                    if request.content_type == 'application/json':
+                        post_data = request.get_json()
+                        order_status =  post_data.get('order_status')
+                        if order_status:
+                            if isinstance(order_status,str):
+                                if order_status in ["New","Processing","Cancelled","Complete"]:
+                                    MakeOrder.update(order_status,order_id)
+                                    return response('success', 'Order Status successfully updated',200)
+                                return response('failed', 'The Status of an order could either be New , Processing ,Cancelled or Complete .', 400)          
+                            return response('failed', 'Order status should be a string', 400)
+                        return response('failed', 'Order status cannot be empty', 400)
+                    return response('failed', 'Content-type must be json', 400)
+                return response('failed', 'The order with that id doesnt exist', 400)
         return response('failed', 'Sorry, this request requires administrative privileges to run', 401)
 
 class OrderHistory(MethodView):

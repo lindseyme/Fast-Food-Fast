@@ -1,28 +1,35 @@
 from tests.base import BaseTestCase
-from app.models.menu_model import OrderMenu
+from app.models.user_model import User
 from app import conn
 import unittest
 import json
+import time
+import string
+import random
 
-class TestMenuBluePrint(BaseTestCase):
-    def test_get_menu_without_jwt(self):
-            """
-            Helper function to create a menu
-            :return:
-            """
-            response = self.client.get('/menu')
-            self.assertEqual(response.status_code, 401)
+def item_name_generator(size=10, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
-    def test_get_menu(self):
-            """
-            Helper function to create a menu
-            :return:
-            """
-            token = self.get_user_token()
-            response = self.client.get('/menu',headers={"x-access-token": token},content_type='application/json')
-            data = json.loads(response.data.decode('utf-8'))
-            #self.assertEqual(data['status'], 'success')
-            self.assertEqual(response.status_code, 200)
-
-    
-
+class TestAuthBluePrint(BaseTestCase):
+    def test_create_menu(self):
+        """
+        Test a user is successfully created through the api
+        :return:
+        """
+        with self.client:
+            response = self.create_menu()
+            data = json.loads(response.data.decode())
+            if data['status'] == "success":
+                self.assertEqual(response.status_code, 201)
+                self.assertTrue(data['status'], 'success')
+                self.assertTrue(data['message'], 'Successfully registered')
+            else:
+                token = self.get_user_token()
+                response = self.client.post('/menu', data=json.dumps({"item_name":item_name_generator(),"price":25000}),
+                                            headers={"x-access-token": token},
+                                            content_type='application/json')
+                data = json.loads(response.data.decode())
+                self.assertEqual(response.status_code, 201)
+                self.assertTrue(data['status'], 'success')
+                self.assertTrue(data['message'], 'Successfully registered')
+        
