@@ -3,8 +3,11 @@ Fast Food Fast is a food delivery service app for a restaurant.
 
 ## Badges
 ### Travis badge
-
-
+[![Build Status](https://travis-ci.org/lindseyme/Fast-Food-Fast.svg?branch=ft-challenge-three)](https://travis-ci.org/lindseyme/Fast-Food-Fast)
+### Code climate
+[![Maintainability](https://api.codeclimate.com/v1/badges/d394577ec343cf74808c/maintainability)](https://codeclimate.com/github/lindseyme/Fast-Food-Fast/maintainability)
+coveralls
+[![Coverage Status](https://coveralls.io/repos/github/lindseyme/Fast-Food-Fast/badge.svg?branch=api_ci)](https://coveralls.io/github/lindseyme/Fast-Food-Fast?branch=api_ci)
 ## Functionality
 - Create user accounts that can signin/signout from the app.
 - Place an order for food.
