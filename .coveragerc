@@ -1,0 +1,2 @@
+[run]
+omit = tests/base.py,tests/test_menu_views.py,tests/test_order_views.py,tests/test_user_views.py,tests/test_config.py,tests/test_main_app.py

@@ -1,4 +1,8 @@
 [
+  "tests/test_config.py::TestDevelopmentConfig::test_app_in_development",
+  "tests/test_config.py::TestTestingConfig::test_app_in_testing",
+  "tests/test_menu_views.py::TestAuthBluePrint::test_create_menu",
+  "tests/test_order_views.py::TestOrdersBluePrint::test_get_order_history",
   "tests/test_order_views.py::TestOrdersBluePrint::test_get_orders",
   "tests/test_order_views.py::TestOrdersBluePrint::test_get_specific_order",
   "tests/test_order_views.py::TestOrdersBluePrint::test_orders_creation",

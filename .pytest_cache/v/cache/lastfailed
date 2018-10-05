@@ -1,7 +1,5 @@
 {
   "tests/test_order_views.py::TestOrdersBluePrint::test_order_status": true,
-  "tests/test_order_views.py::TestOrdersBluePrint::test_orders_creation": true,
-  "tests/test_order_views.py::TestOrdersBluePrint::test_update_order_status": true,
   "tests/test_user_views.py::TestAuthBluePrint::test_expired_user_token_user_log_out": true,
   "tests/test_user_views.py::TestAuthBluePrint::test_log_out_has_a_valid_token": true,
   "tests/test_user_views.py::TestAuthBluePrint::test_log_out_request_contains_an_authorization_header": true,

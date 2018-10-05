@@ -1,8 +1,8 @@
 import os
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
-postgres_local_base = 'postgresql://postgres:123456@localhost/'
-database_name = 'api'
+# postgres_local_base = 'postgresql://postgres:123456@localhost/'
+# database_name = 'testdb'
 
 
 class BaseConfig:
@@ -24,9 +24,9 @@ class TestingConfig(BaseConfig):
     """
     DEBUG = True
     TESTING = True
-    AUTH_TOKEN_EXPIRY_DAYS = 0
-    AUTH_TOKEN_EXPIRY_SECONDS = 3
-    AUTH_TOKEN_EXPIRATION_TIME_DURING_TESTS = 5
+    # AUTH_TOKEN_EXPIRY_DAYS = 0
+    # AUTH_TOKEN_EXPIRY_SECONDS = 3
+    # AUTH_TOKEN_EXPIRATION_TIME_DURING_TESTS = 5
     
 
 
