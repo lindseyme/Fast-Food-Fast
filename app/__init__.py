@@ -20,7 +20,7 @@ app.config.from_object(app_settings)
 bcrypt = Bcrypt(app)
 
 # Initialize connections to  postgresql server
-conn = psycopg2.connect(database = "testdb")
+conn = psycopg2.connect(database = "testdb",user="postgres",password="")
 
 # Import the application views
 from app.views.user_views import GetAuthUrls
