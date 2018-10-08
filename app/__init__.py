@@ -14,8 +14,6 @@ app_settings = os.getenv(
 )
 app.config.from_object(app_settings)
 
-
-# app.config['SECRET_KEY'] = "thisissecret"
 # Initialize Bcrypt
 bcrypt = Bcrypt(app)
 
