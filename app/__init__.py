@@ -21,7 +21,7 @@ bcrypt = Bcrypt(app)
 
 # Initialize connections to  postgresql server
 if os.getenv('db') == 'heroku':
-    conn = psycopg2.connect(database = "d3jpf1e4bm92ff",user="jxboodptewpeaq",password="d5c8d9c2ab8aeff7fdb73701c1cacd3803d39f7c1320c21241824e85e3254091" host="ec2-174-129-32-37.compute-1.amazonaws.com",port=5432)
+    conn = psycopg2.connect(database = "d3jpf1e4bm92ff",user="jxboodptewpeaq",password="d5c8d9c2ab8aeff7fdb73701c1cacd3803d39f7c1320c21241824e85e3254091", host="ec2-174-129-32-37.compute-1.amazonaws.com",port=5432)
 else:
     conn = psycopg2.connect(database = "testdb")
 
