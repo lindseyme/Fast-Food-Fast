@@ -9,6 +9,7 @@
   "tests/test_user_views.py::TestAuthBluePrint::test_token_required_method_expired_authorization_token": true,
   "tests/test_user_views.py::TestAuthBluePrint::test_token_required_method_incorrect_authorization_token": true,
   "tests/test_user_views.py::TestAuthBluePrint::test_token_required_method_invalid_authorization_token": true,
+  "tests/test_user_views.py::TestAuthBluePrint::test_user_registration": true,
   "tests/test_user_views.py::TestAuthBluePrint::test_user_token_was_blacklisted": true,
   "tests/test_user_views.py::TestAuthBluePrint::test_valid_user_log_out": true
 }

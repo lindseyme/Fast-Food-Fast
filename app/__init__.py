@@ -20,7 +20,10 @@ app.config.from_object(app_settings)
 bcrypt = Bcrypt(app)
 
 # Initialize connections to  postgresql server
-conn = psycopg2.connect(database = "testdb",user="postgres",password="")
+if os.getenv('db') == 'heroku':
+    conn = psycopg2.connect(database = "d3jpf1e4bm92ff",user="jxboodptewpeaq",password="d5c8d9c2ab8aeff7fdb73701c1cacd3803d39f7c1320c21241824e85e3254091" host="ec2-174-129-32-37.compute-1.amazonaws.com",port=5432)
+else:
+    conn = psycopg2.connect(database = "testdb")
 
 # Import the application views
 from app.views.user_views import GetAuthUrls
