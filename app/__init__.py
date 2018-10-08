@@ -1,11 +1,11 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify,render_template
 import psycopg2
 from flask_bcrypt import Bcrypt
 
 
 # Initialize application
-app = Flask(__name__, static_folder=None)
+app = Flask(__name__)
 
 # app configuration
 app_settings = os.getenv(
@@ -28,9 +28,16 @@ else:
 # Import the application views
 from app.views.user_views import GetAuthUrls
 from app.views.menu_views import GetMenuUrls
-from app.docs.views import docs
+# from app.docs.views import docs
 from app.views.order_views import GetOrderUrls
 GetAuthUrls.fetch_urls(app)
 GetMenuUrls.fetch_urls(app)
 GetOrderUrls.fetch_urls(app)
-app.register_blueprint(docs)
+# app.register_blueprint(docs)
+@app.route('/')
+def index():
+    """
+    Show an index template
+    :return:
+    """
+    return render_template('docs/index.html')
