@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify,render_template
+from flask import Flask, jsonify
 import psycopg2
 from flask_bcrypt import Bcrypt
 
@@ -14,6 +14,8 @@ app_settings = os.getenv(
 )
 app.config.from_object(app_settings)
 
+
+# app.config['SECRET_KEY'] = "thisissecret"
 # Initialize Bcrypt
 bcrypt = Bcrypt(app)
 
@@ -26,16 +28,9 @@ else:
 # Import the application views
 from app.views.user_views import GetAuthUrls
 from app.views.menu_views import GetMenuUrls
-# from app.docs.views import docs
+from app.docs.views import docs
 from app.views.order_views import GetOrderUrls
 GetAuthUrls.fetch_urls(app)
 GetMenuUrls.fetch_urls(app)
 GetOrderUrls.fetch_urls(app)
-# app.register_blueprint(docs)
-@app.route('/')
-def index():
-    """
-    Show an index template
-    :return:
-    """
-    return render_template('docs/index.html')
+app.register_blueprint(docs)

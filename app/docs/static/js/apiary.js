@@ -1,5 +1,5 @@
 var embed = new Apiary.Embed({
-    "subdomain": "fast",
+    "subdomain": "fast-food-fast-api-ch3",
     "preferences": {
         "element": "#documentation",
         "displayHttpMethods": true
