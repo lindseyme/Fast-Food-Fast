@@ -36,7 +36,7 @@ class AddMenuItem(MethodView):
             if request.content_type == 'application/json':
                 post_data = request.get_json()
                 item_name = post_data.get('item_name')
-                price = post_data.get('price')
+                price = int(post_data.get('price'))
                 
                 if isinstance(item_name, str) and isinstance(price ,int):
                     if item_name and price > 0:

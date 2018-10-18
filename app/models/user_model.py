@@ -59,7 +59,7 @@ class User:
         """
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes = 30),
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(days = 1),
                 'sub': user_id
             }
             return jwt.encode(
@@ -84,9 +84,9 @@ class User:
                 return 'Token was Blacklisted, Please login In'
             return payload['sub']
         except jwt.ExpiredSignatureError:
-            return 'Signature expired, Please sign in again'
+             return 'Signature expired, Please sign in again'
         except jwt.InvalidTokenError:
-            return 'Invalid ken. Please sign in again'
+             return 'Invalid key. Please sign in again'
 
 class BlackListToken:
     """
