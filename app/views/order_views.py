@@ -80,33 +80,33 @@ class Order(MethodView):
         Method for creating the new order
         """
         if request.content_type == 'application/json':
-            if 'item_name' in request.json and 'quantity' in request.json:
-                post_data = request.get_json()
-                item_name = post_data.get('item_name')
-                quantity = post_data.get('quantity')
-                
-                if isinstance(item_name,str) and isinstance(quantity,int):
-                    if item_name and quantity > 0:
-                        get_price = OrderMenu.check_item(item_name)
-                        if get_price:
-                            price = quantity * get_price
-                            cur = conn.cursor()
-                            sql1 = """
-                                SELECT user_id FROM users WHERE email=%s 
-                            """
-                            cur.execute(sql1,(current_user,))
-                            user = cur.fetchone()
-                            user_id = user[0]
-                            order = MakeOrder.get_by_name(user_id,item_name)
-                            if not order:
-                                MakeOrder(user_id,OrderMenu.get_item_id(item_name),item_name,quantity,price).save()
-                                return response('success', 'Order made successfully', 201)
-                            return response('failed', 'Failed, Order already exists, Please wait as they work on it', 400)
-                        return response('failed', 'Failed, Item name does not exist on the menu, Please check on the menu again', 400)
-                                        
-                    return response('failed', 'Failed, Item name cannot be empty or quantity should be  1 and above.', 400)                
-                return response('failed', 'Item name and quantity should be a string and a non negative integer respectively', 400)
-            return response('failed', 'item_name or password is missing', 400)
+            # if 'item_name' in request.json and 'quantity' in request.json:
+            post_data = request.get_json()
+            item_name = post_data.get('item_name')
+            quantity = int(post_data.get('quantity'))
+            
+            if isinstance(item_name,str) and isinstance(quantity,int):
+                if item_name and quantity > 0:
+                    get_price = OrderMenu.check_item(item_name)
+                    if get_price:
+                        price = quantity * get_price
+                        cur = conn.cursor()
+                        sql1 = """
+                            SELECT user_id FROM users WHERE email=%s 
+                        """
+                        cur.execute(sql1,(current_user,))
+                        user = cur.fetchone()
+                        user_id = user[0]
+                        order = MakeOrder.get_by_name(user_id,item_name)
+                        if not order:
+                            MakeOrder(user_id,OrderMenu.get_item_id(item_name),item_name,quantity,price).save()
+                            return response('success', 'Order made successfully', 201)
+                        return response('failed', 'Failed, Order already exists, Please wait as they work on it', 400)
+                    return response('failed', 'Failed, Item name does not exist on the menu, Please check on the menu again', 400)
+                                    
+                return response('failed', 'Failed, Item name cannot be empty or quantity should be  1 and above.', 400)                
+            return response('failed', 'Item name and quantity should be a string and a non negative integer respectively', 400)
+            # return response('failed', 'item_name or price is missing', 400)
         return response('failed', 'Content-type must be json', 202)                   
 
     @token_required   
@@ -171,7 +171,7 @@ class OrderHistory(MethodView):
                    "created_at":order[7]
                 }
                 order_history.append(order_details)
-                return response("success",order_history,200)
+            return response("success",order_history,200)
         return response('success', 'No order history', 200)
 
 

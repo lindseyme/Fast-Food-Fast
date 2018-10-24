@@ -2,11 +2,12 @@ import os
 from flask import Flask, jsonify
 import psycopg2
 from flask_bcrypt import Bcrypt
-
+from flask_cors import CORS
 
 # Initialize application
 app = Flask(__name__)
 
+CORS(app)
 # app configuration
 app_settings = os.getenv(
     'APP_SETTINGS',
@@ -18,6 +19,8 @@ app.config.from_object(app_settings)
 # app.config['SECRET_KEY'] = "thisissecret"
 # Initialize Bcrypt
 bcrypt = Bcrypt(app)
+
+
 
 # Initialize connections to  postgresql server
 if os.getenv('db') == 'heroku':

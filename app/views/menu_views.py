@@ -25,7 +25,7 @@ class AddMenuItem(MethodView):
                 all_items.append(item)
 
             return response('success', all_items, 200)
-        return response('success', "Menu is empty, Please consult the caterer.", 200)
+        return response('success', "Menu is empty!", 200)
 
     @token_required
     def post(current_user,self):
