@@ -10,44 +10,27 @@
             <ul>
                 <li><a href="#">APL Fast Food Dealers</a></li>
                 <div id="items-right">
-                        <li><a href="manageFastFood.html">Fast foods</a></li>
-                        <li><a href="#" id="view">View orders</a></li>
-                        <li><a href="#">Change credentials</a></li>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="index.html">logout</a></li>
+                        <li><a href="manageFastFood.html">fast foods</a></li>
+                        <li><a href="#" id="view">view orders</a></li>
+                        <li><a href="user_account.html">logout</a></li>
                 </div>
         </div>
                
             </ul>
         </div>
+        
         <div id="main">
-            <h1>View Orders</h1>
-            <h6>To accept or decline them</h6>
-            <hr>
-            <table border="1" id="orderHistory">
-                    <tr>
-                        <th>#</th>
-                        <th>Username</th>
-                        <th>Order date</th>
-                        <th>View order</th>
-                        <th>Mark as complete</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lindsey</td>
-                        <td>01-12-2018</td>
-                        <td><button id="viewOrder" onclick="order1()">View order</button></td>
-                        <td><input type="checkbox" name="yes"></td>
-                        
-                    </tr>
-                     <tr>
-                            <td>2</td>
-                            <td>Ayesiga</td>
-                            <td>01-08-2018</td>
-                            <td><button id="viewOrder1" onclick="order2()">View order</button></td>
-                            <td><input type="checkbox" name="yes"></td>
-                    </tr>
-                </table>
+            <center>
+                    <h1>View Orders</h1>
+                    <h6>To accept or decline them</h6>
+                    <hr>
+                    <span style="text-align: right;">Get order by id :<input type="number" id="single_id"><button onclick="getSingleOrder()">Go</button></span>
+                   <div id="orderTable">
+        
+                   </div>
+            
+            </center>
+            
             
         </div>
 
@@ -56,58 +39,28 @@
                 <div class="modal-content">
                   <div class="modal-header">
                       <span class="closeBtn">&times;</span>
-                      <h2>Lindsey's Orders</h2>
+                      <h2>Update order</h2>
                   </div>
                   <div class="modal-body">
                         <table border="1" id="orderHistory">
                                 <tr>
-                                    <th>#</th>
-                                    <th>Item</th>
-                                    <th>Category</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Total price</th>
-                                    
+                                    <th>Order Id</th>
+                                    <!--<th>Category</th>-->
+                                    <th>User Id</th>
+                                    <th>Order Status</th>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bacon burger</td>
-                                    <td>Burger</td>
-                                    <td>2</td>
-                                    <td>$10</td>
-                                    <td>$20</td>
-                                </tr>
-                                <tr>
-                                        <td>2</td>
-                                        <td>American Pizza</td>
-                                        <td>Pizza</td>
-                                        <td>1</td>
-                                        <td>$15</td>
-                                        <td>$15</td>
-                                    </tr>
-                                    <tr>
-                                       <td colspan="6">Total:$35 </td> 
-                                    </tr>
+                                <tr><td><span id="order_id"></span></td><td><span id="user_id"></span></td><td><select id="order_status"><option value="New">New</option><option value="Complete">Complete</option><option value="Processing">Processing</option><option value="Cancelled">Cancelled</option></select></td></tr>
+                                <input type="hidden" id="input_order_id">
                         </table>
-  
+                        
                   </div>
                   <div class="modal-footer">
-                          
-                          <button id="declineBtn">Decline</button>
-                          <button id="acceptBtn">Accept</button>
-                                   
-  
+                          <button onclick="saveChanges()">Save changes</button>
                   </div>
                 </div>
               </div>
 
-
-
-
-
-
-        <script src="js/admin_viewOrder.js"></script>
-            
-            
+        <script src="js/global.js"></script>
+        <script src="js/admin_viewOrder.js"></script>    
     </body>
 </html>

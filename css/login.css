@@ -72,8 +72,9 @@ body {
   left:50%;
   transform:translate(-50%,-50%);
   width:450px;
-  height:400px;
+  height:270px;
   background:#fdfdfd;
+  border-radius: 15px;
 }
 .form .head {
   width:100%;

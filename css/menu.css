@@ -91,3 +91,11 @@ body {
                 border-radius:40px;
             }
              
+            #orderHistory {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 80%;
+                margin-left:10%;
+                margin-right:10%;
+                margin-top: 20px;
+            }

@@ -164,6 +164,7 @@ body {
             .modal-footer button{
                 border:none;
                 color:white;
+                background: springgreen;
                 border-radius: 5px;
                 font-size: 20px;
                 

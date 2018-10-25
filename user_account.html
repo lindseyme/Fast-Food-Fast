@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>APL fast food dealers</title>
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class= "navbar">
+        <ul>
+            <li><a href="#">APL Fast Food Dealers</a></li>
+            <div id="items-right">
+                <li><a href="#">Help</a></li>
+            </div>
+           
+        </ul>
+    </div>
+  <div class="form">
+    <div class="head" class="signup">
+      <div onclick="swap(this);" data-tab="login" class="login-tab" >
+        LOGIN
+      </div>
+      <div onclick="swap(this);" data-tab="signup" class="signup-tab">
+        SIGNUP
+      </div>
+    </div>
+    <div class="body" id="form-body">
+        <div class="login">
+          <div class="form-row">
+           
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button onclick="loginUser()">LOGIN</button>
+          </div>
+        </div>
+        <div class="signup">
+          <div class="form-row">
+                  <input type="email"  id="r_email" placeholder="Email" required>
+                  <input type="password" id="r_password" placeholder="Password" required>
+                  <button onclick="RegisterUser()">SIGNUP</button>
+          </div>
+        </div>
+    </div>
+  </div>
+ <script src="js/global.js"></script>
+ <script src="js/login.js"></script>
+</body>
+</html>
