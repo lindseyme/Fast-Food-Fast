@@ -14,8 +14,8 @@ function loginUser(){
     var password = document.getElementById('password').value;
     const data = {"email":email, "password":password};
 
-
-    fetch('https://fast-food-fast-api-ch3.herokuapp.com/auth/login', {
+    var login_url=SERVER_PATH+"auth/login";
+    fetch(login_url, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -37,7 +37,7 @@ function loginUser(){
                 }
             }
             else{
-
+                alert(result.message);
             }
             
         })
@@ -49,7 +49,8 @@ function RegisterUser(){
     var password = document.getElementById('r_password').value;
     const data = {"email":email, "password":password};
 
-    fetch('https://fast-food-fast-api-ch3.herokuapp.com/auth/signup', {
+    var register_url=SERVER_PATH+"auth/signup";
+    fetch(register_url, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
