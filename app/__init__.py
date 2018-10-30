@@ -5,7 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
 # Initialize application
-app = Flask(__name__)
+app = Flask(__name__,static_folder=None)
 
 CORS(app)
 # app configuration
