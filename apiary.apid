@@ -1,6 +1,7 @@
 FORMAT: 1A
 HOST: https://fast-food-fast-api-ch3.herokuapp.com
 
+
 # Fast-Food-Fast
 
 Fast-Food-Fast is an API allowing a user to register, login to palce an order for food
@@ -137,7 +138,7 @@ auth token will then be invalidated.
           "status": "failed"
         }
 
-## Order Resources 
+## Food-Fast-Fast Resources 
 
 You can create, read, update and orders.
 
@@ -313,7 +314,7 @@ You can update the status of the Order
           "status": "failed"
         }
 
-## Menu  
+## Menu Resources 
 
 You can create, and read menu.
 
