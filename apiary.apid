@@ -2,7 +2,7 @@ FORMAT: 1A
 HOST: https://fast-food-fast-api-ch3.herokuapp.com
 
 
-# Fast-Food-Fast
+# FastFoodFast
 
 Fast-Food-Fast is an API allowing a user to register, login to palce an order for food
 
